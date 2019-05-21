@@ -1,0 +1,11 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8889
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost/barista
