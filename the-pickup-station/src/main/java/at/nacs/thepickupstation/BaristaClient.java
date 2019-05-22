@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient("the-barista")
-public interface OrderClient {
+public interface BaristaClient {
 
   @GetMapping("/barista")
   Order findOrder();

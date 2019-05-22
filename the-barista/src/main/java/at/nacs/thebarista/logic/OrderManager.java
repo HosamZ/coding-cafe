@@ -1,7 +1,6 @@
 package at.nacs.thebarista.logic;
 
 import at.nacs.thebarista.persistance.Order;
-import at.nacs.thebarista.persistance.OrderClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

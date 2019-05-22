@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/pickup")
@@ -15,8 +16,7 @@ public class OrderEndpoint {
   private final OrderManager orderManager;
 
   @GetMapping
-  List<Order> get(Order order) {
-    orderManager.save(order);
-    return orderManager.findAll();
+  Map<String, List<Order>> findAllByUuid() {
+    return orderManager.findOrdersByUuid();
   }
 }

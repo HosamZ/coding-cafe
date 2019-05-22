@@ -14,18 +14,13 @@ public class OrderEndpoint {
 
   private final OrderManager orderManager;
 
-  @PostMapping
-  Order save(@RequestBody Order order) {
-    return orderManager.save(order);
+  @GetMapping("/beverage")
+  List<Order> findBevarages() {
+    return orderManager.findBeverage();
   }
 
-  @GetMapping("/beverage/{beverage}")
-  List<Order> findBevarages(@PathVariable String beverage) {
-    return orderManager.findBeverage(beverage);
-  }
-
-  @GetMapping("/foodstuff/{foodstuff}")
-  List<Order> findFoodstuff(@PathVariable String foodstuff) {
-    return orderManager.findFoodstuff(foodstuff);
+  @GetMapping("/foodstuff")
+  List<Order> findFoodstuff() {
+    return orderManager.findFoodstuff();
   }
 }

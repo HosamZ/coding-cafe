@@ -16,6 +16,6 @@ public class AssistantEndpoint {
 
   @GetMapping
   Order get() throws InterruptedException {
-    return manager.send();
+    return manager.takeOrder();
   }
 }

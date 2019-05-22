@@ -3,13 +3,12 @@ package at.nacs.thecashier.communication;
 import at.nacs.thecashier.logic.PurchaseManager;
 import at.nacs.thecashier.persistence.Purchase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/purchase")
 @RequiredArgsConstructor
 public class PurchaseEndpoint {
 
@@ -18,5 +17,10 @@ public class PurchaseEndpoint {
   @PostMapping
   Purchase save(@RequestBody Purchase purchase) {
     return purchaseManager.save(purchase);
+  }
+
+  @GetMapping
+  List<Purchase> findAll() {
+    return purchaseManager.findAll();
   }
 }

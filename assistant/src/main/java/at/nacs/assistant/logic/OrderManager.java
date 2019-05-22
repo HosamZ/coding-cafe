@@ -3,9 +3,9 @@ package at.nacs.assistant.logic;
 import at.nacs.assistant.persistance.Order;
 import at.nacs.assistant.persistance.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -18,12 +18,20 @@ public class OrderManager {
   private final OrderClient client;
   private final OrderRepository repository;
 
-  public Order send() throws InterruptedException {
+  public Order takeOrder() throws InterruptedException {
+    List<Order> orders = repository.findAll();
+    Order receivedOrder = client.findOrder();
+    if (orders.contains(receivedOrder)) {
+      ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+      executor.awaitTermination(5, SECONDS);
+//      receivedOrder.setReady(true);
+//      repository.save(receivedOrder);
+      return receivedOrder;
+    }
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     executor.awaitTermination(10, SECONDS);
-    Order order = client.findOrder();
-    order.setReady(true);
-    repository.save(order);
-    return order;
+    repository.save(receivedOrder);
+    return receivedOrder;
   }
+
 }

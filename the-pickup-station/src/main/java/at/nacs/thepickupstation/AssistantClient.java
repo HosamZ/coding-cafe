@@ -1,11 +1,11 @@
-package at.nacs.thebarista.persistance;
+package at.nacs.thepickupstation;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient("the-cashier")
-public interface OrderClient {
+@FeignClient("assistant")
+public interface AssistantClient {
 
-  @GetMapping("/order/beverage")
+  @GetMapping("/assistant")
   Order findOrder();
 }
